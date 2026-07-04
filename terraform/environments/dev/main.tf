@@ -67,3 +67,59 @@ module "route_table_association" {
 
   public_subnet_2_id = module.public_subnets.public_subnet_2_id
 }
+module "elastic_ip" {
+
+  source = "../../modules/elastic-ip"
+
+  project     = var.project
+  environment = var.environment
+}
+module "nat_gateway" {
+
+  source = "../../modules/nat-gateway"
+
+  allocation_id = module.elastic_ip.elastic_ip_id
+
+  subnet_id = module.public_subnets.public_subnet_1_id
+
+  project = var.project
+
+  environment = var.environment
+}
+module "private_subnets" {
+
+  source = "../../modules/private-subnets"
+
+  vpc_id = module.vpc.vpc_id
+
+  private_subnet_1_cidr = var.private_subnet_1_cidr
+  private_subnet_2_cidr = var.private_subnet_2_cidr
+
+  availability_zone_1 = var.availability_zone_1
+  availability_zone_2 = var.availability_zone_2
+
+  project     = var.project
+  environment = var.environment
+}
+module "private_route_table" {
+
+  source = "../../modules/private-route-table"
+
+  vpc_id = module.vpc.vpc_id
+
+  nat_gateway_id = module.nat_gateway.nat_gateway_id
+
+  project = var.project
+
+  environment = var.environment
+}
+module "private_route_table_association" {
+
+  source = "../../modules/private-route-table-association"
+
+  private_route_table_id = module.private_route_table.private_route_table_id
+
+  private_subnet_1_id = module.private_subnets.private_subnet_1_id
+
+  private_subnet_2_id = module.private_subnets.private_subnet_2_id
+}
