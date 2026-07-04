@@ -44,3 +44,26 @@ module "public_subnets" {
 
   availability_zone_2 = var.availability_zone_2
 }
+module "route_table" {
+
+  source = "../../modules/route-table"
+
+  vpc_id = module.vpc.vpc_id
+
+  internet_gateway_id = module.internet_gateway.internet_gateway_id
+
+  project = var.project
+
+  environment = var.environment
+
+}
+module "route_table_association" {
+
+  source = "../../modules/route-table-association"
+
+  public_route_table_id = module.route_table.public_route_table_id
+
+  public_subnet_1_id = module.public_subnets.public_subnet_1_id
+
+  public_subnet_2_id = module.public_subnets.public_subnet_2_id
+}
