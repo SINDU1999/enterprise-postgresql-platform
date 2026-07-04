@@ -26,3 +26,21 @@ module "internet_gateway" {
   environment = var.environment
 
 }
+module "public_subnets" {
+
+  source = "../../modules/public-subnets"
+
+  vpc_id = module.vpc.vpc_id
+
+  project = var.project
+
+  environment = var.environment
+
+  public_subnet_1_cidr = var.public_subnet_1_cidr
+
+  public_subnet_2_cidr = var.public_subnet_2_cidr
+
+  availability_zone_1 = var.availability_zone_1
+
+  availability_zone_2 = var.availability_zone_2
+}
