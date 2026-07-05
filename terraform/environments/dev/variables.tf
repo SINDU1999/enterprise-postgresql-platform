@@ -44,3 +44,66 @@ variable "private_subnet_1_cidr" {
 variable "private_subnet_2_cidr" {
   type = string
 }
+variable "db_username" {
+  description = "Database Username"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Database Password"
+  type        = string
+  sensitive   = true
+}
+variable "db_identifier" {
+  type = string
+}
+
+variable "db_name" {
+  type = string
+}
+
+variable "db_engine" {
+  type = string
+}
+
+variable "db_engine_version" {
+  type = string
+}
+
+variable "db_instance_class" {
+  type = string
+}
+
+variable "db_allocated_storage" {
+  type = number
+}
+
+variable "db_storage_type" {
+  type = string
+}
+
+variable "db_multi_az" {
+  type = bool
+}
+
+variable "db_publicly_accessible" {
+  type = bool
+}
+
+variable "db_skip_final_snapshot" {
+  type = bool
+}
+variable "ami_id" {
+  description = "AMI ID for EC2"
+  type        = string
+}
+
+variable "instance_type" {
+  description = "EC2 Instance Type"
+  type        = string
+}
+
+variable "key_name" {
+  description = "EC2 Key Pair Name"
+  type        = string
+}
