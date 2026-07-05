@@ -1,15 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
 # Terraform
 **/.terraform/
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
 
-# Logs
-*.log
-
-# IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
+# Environment
+.env
+*.pem
