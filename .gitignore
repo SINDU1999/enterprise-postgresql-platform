@@ -1,13 +1,17 @@
-# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Terraform
-**/.terraform/
-*.tfstate
-*.tfstate.*
-.terraform.lock.hcl
-
-# Environment
 .env
-*.pem
+
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+
+*.tar.gz
+
+.vscode/
+.idea/
+
+.DS_Store
