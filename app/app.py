@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from db import get_connection
 
 app = Flask(__name__)
+app.secret_key = "enterpriseportal123"
 
 
 @app.route("/")
@@ -33,6 +34,8 @@ def add_employee():
     )
 
     conn.commit()
+
+    flash("Employee added successfully!")
 
     cur.close()
     conn.close()
